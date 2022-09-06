@@ -10,33 +10,38 @@ function getAllUsers() {
 }
    
 function listTables(data){
-    let bodyTable =  document.getElementById("body")
+    let divPrincipal =  document.getElementById("div-principal")
     let alert = document.getElementById('alert')
 
     alert.className = 'alert alert-success alert-dismissible fade show'
 
     for (let index = 0; index < data.length; index++) {
-        let tr  = document.createElement('tr')
-        let td1 = document.createElement('td') 
-            td1.innerHTML=data[index].first_name
+       
+        let div  = document.createElement('div')
+        div.className = "card col-4 col-md-6 col-lg-6 mb-3 "
+        div.style="width: 20rem;"
 
-        let td2 = document.createElement('td') 
-            td2.innerHTML=data[index].last_name
-            
-        let td3 = document.createElement('td') 
-            td3.innerHTML=data[index].email
-
-        let td4 = document.createElement('td') 
-        
         let img = document.createElement('img')
-            img.src=data[index].avatar
-            td4.appendChild(img)
+        img.className = "card-img-top"
+        img.src=data[index].avatar
 
-        tr.appendChild(td1)
-        tr.appendChild(td2)
-        tr.appendChild(td3)
-        tr.appendChild(td4)
-        bodyTable.appendChild(tr)
+        let divBody = document.createElement('div')
+        divBody.className =  "card-body"
+
+        let h5 = document.createElement('h5')
+        h5.className = "card-title"
+            h5.innerHTML =  data[index].first_name + " " + data[index].last_name
+
+        let p  = document.createElement('p')
+            p.className="card-text"
+            p.innerHTML="Correo electrónico : "  +  data[index].email
+
+            div.appendChild(img)
+            divBody.appendChild(h5)
+            divBody.appendChild(p)
+            div.appendChild(divBody)
+        
+        divPrincipal.appendChild(div)
         
     }
    
